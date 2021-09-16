@@ -1,5 +1,8 @@
+import { useState } from "react";
+import MainMenu from "./components/MainMenu";
 import MarketRow from "./components/MarketRow";
-import { Market } from "./interfaces";
+import { TimeInterval } from "./models/enums";
+import { Market } from "./models/interfaces";
 
 const currencies: Market[] = [
   { name: "Bitcoin", token: "BTC" },
@@ -10,6 +13,9 @@ const currencies: Market[] = [
 ];
 
 function App() {
+  const [timeInterval, setTimeInterval] = useState<TimeInterval>(
+    TimeInterval.Daily
+  );
   // useEffect(() => {
   //   axios
   //     .get(
@@ -22,7 +28,11 @@ function App() {
 
   return (
     <div>
-      <p>Crypto App</p>
+      <p>Market Overview</p>
+      <MainMenu
+        activeInterval={timeInterval}
+        onIntervalChange={setTimeInterval}
+      />
       {currencies.map((item, index) => (
         <MarketRow key={index} market={item} />
       ))}

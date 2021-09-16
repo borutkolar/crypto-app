@@ -1,4 +1,4 @@
-import { Market } from "../../interfaces";
+import { Market } from "../../models/interfaces";
 
 interface Props {
   market: Market;
